@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AMS Portal</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      text-align: center;
+      margin: 0;
+      padding: 40px;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .btn {
+      display: block;
+      padding: 20px;
+      margin: 15px 0;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 18px;
+      transition: 0.2s;
+    }
+
+    .btn-primary {
+      background: #2563eb;
+      color: white;
+    }
+
+    .btn-secondary {
+      background: white;
+      border: 2px solid #ddd;
+      color: #333;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .small-btn {
+      font-size: 14px;
+      color: #666;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <h1>AMS - Audit Management System</h1>
+  <p>Portal Akses Sistem Audit</p>
+
+  <a href="#" class="btn btn-primary" onclick="openApp('opr')">
+    AMS OPR
+  </a>
+
+  <a href="#" class="btn btn-secondary" onclick="openApp('nonopr')">
+    AMS Non OPR
+  </a>
+
+  <hr>
+
+  <a href="#" class="btn btn-secondary">Manual Book</a>
+  <a href="#" class="btn btn-secondary">Video Tutorial</a>
+
+  <div class="small-btn" onclick="resetUser()">
+    Ganti User
+  </div>
+
+</div>
+
+<script>
+const APP_URL = {
+  opr: "https://www.appsheet.com/start/9706c122-adff-4a26-a979-34903b8dfc69",
+  nonopr: "https://www.appsheet.com/start/87e5e9f0-32ac-4504-b9ef-60c9af29e874"
+};
+
+const userRoles = {
+  "hayun@company.com": "opr"
+};
+
+// ambil email
+function getUserEmail() {
+  let email = localStorage.getItem("ams_user_email");
+
+  if (!email) {
+    email = prompt("Masukkan email Anda:");
+    if (email) {
+      localStorage.setItem("ams_user_email", email);
+    }
+  }
+
+  return email;
+}
+
+// auto redirect
+function autoRedirect() {
+  const email = getUserEmail();
+  if (!email) return;
+
+  const role = userRoles[email.toLowerCase()];
+
+  if (role && APP_URL[role]) {
+    setTimeout(() => {
+      window.location.href = APP_URL[role];
+    }, 800);
+  }
+}
+
+// klik manual
+function openApp(type) {
+  const url = APP_URL[type];
+  window.open(url, "_blank");
+}
+
+// reset user
+function resetUser() {
+  localStorage.removeItem("ams_user_email");
+  location.reload();
+}
+
+// jalankan
+window.onload = autoRedirect;
+</script>
+
+</body>
+</html>
