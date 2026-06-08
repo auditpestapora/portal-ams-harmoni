@@ -1,430 +1,497 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AMS HARMONI</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-<style>
-body {
-  font-family: 'Inter', sans-serif;
-  background: linear-gradient(135deg, #eef2ff, #f8fafc);
-  margin: 0;
-  padding: 40px;
-}
-
-.container {
-  max-width: 1100px;
-  margin: auto;
-}
-
-/* HEADER */
-.header {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  margin-bottom: 30px;
-}
-
-.logo-group img {
-  height: 40px;
-  margin-right: 8px;
-}
-
-.header-text h1 {
-  margin: 0;
-  font-size: 22px;
-}
-
-.header-text p {
-  margin: 5px 0 0;
-  color: #64748b;
-  font-size: 13px;
-  max-width: 700px;
-}
-
-/* SECTION */
-.section-title {
-  font-size: 14px;
-  color: #94a3b8;
-  margin-bottom: 15px;
-}
-
-/* MAIN CARD */
-.grid-main {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 25px;
-  margin-bottom: 35px;
-}
-
-.card {
-  padding: 28px;
-  border-radius: 20px;
-  text-decoration: none;
-  display: block;
-  transition: 0.25s;
-}
-
-.card-primary {
-  background: linear-gradient(135deg, #2563eb, #3b82f6);
-  color: white;
-}
-
-.card-secondary {
-  background: white;
-  border: 1px solid #e2e8f0;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-}
-
-.card-title {
-  font-size: 20px;
-  font-weight: 600;
-}
-
-.card-desc {
-  font-size: 14px;
-  margin-top: 6px;
-  opacity: 0.85;
-}
-
-.card-link {
-  margin-top: 15px;
-}
-
-/* MENU */
-.grid-menu {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
-}
-
-.menu {
-  background: white;
-  border-radius: 16px;
-  padding: 22px;
-  text-align: center;
-  text-decoration: none;
-  color: #0f172a;
-  border: 1px solid #e2e8f0;
-  cursor: pointer;
-}
-
-.menu:hover {
-  transform: translateY(-4px);
-}
-
-/* MODAL SUPPORT */
-.modal {
-  display: none;
-  position: fixed;
-  top:0; left:0;
-  width:100%; height:100%;
-  background: rgba(0,0,0,0.5);
-  justify-content:center;
-  align-items:center;
-}
-
-.modal-content {
-  background: white;
-  padding: 25px;
-  border-radius: 12px;
-  width: 300px;
-  text-align:center;
-}
-
-.modal a {
-  display:block;
-  margin-top:10px;
-  text-decoration:none;
-  color:#2563eb;
-}
-
-/* FOOTER */
-.footer {
-  margin-top: 40px;
-  text-align: center;
-  font-size: 12px;
-  color: #64748b;
-  border-top: 1px solid #e2e8f0;
-  padding-top: 15px;
-}
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  .grid-main {
-    grid-template-columns: 1fr;
-  }
-
-  .grid-menu {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMS UNIVERSE | Pusat Navigasi Internal Audit</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom scrollbar untuk tampilan yang lebih rapi */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); }
+    </style>
 </head>
-<script>
-function loginAMS() {
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col relative">
 
-  const username = document.getElementById("username").value;
-  const password = document.getElementById("password").value;
-
-  if (
-    username === "IAPPA" &&
-    password === "Harmoni123"
-  ) {
-
-    document.getElementById("loginOverlay").style.display = "none";
-
-    sessionStorage.setItem("ams_logged_in", "true");
-
-  } else {
-
-    document.getElementById("loginError").style.display = "block";
-
-  }
-}
-
-window.onload = function () {
-
-  if (
-    sessionStorage.getItem("ams_logged_in") === "true"
-  ) {
-
-    document.getElementById("loginOverlay").style.display = "none";
-
-  }
-}
-</script>
-<body>
-<!-- LOGIN OVERLAY -->
-<div id="loginOverlay" style="
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:#f8fafc;
-display:flex;
-justify-content:center;
-align-items:center;
-z-index:9999;
-font-family:'Inter',sans-serif;
-">
-
-  <div style="
-  width:340px;
-  background:white;
-  padding:35px;
-  border-radius:20px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.1);
-  text-align:center;
-  ">
-
-    <h2 style="margin-bottom:10px;">
-      AMS HARMONI
-    </h2>
-
-    <p style="
-    color:#64748b;
-    font-size:14px;
-    margin-bottom:25px;
-    ">
-      Silakan login untuk mengakses portal audit
-    </p>
-
-    <input
-      type="text"
-      id="username"
-      placeholder="Username"
-      style="
-      width:100%;
-      padding:12px;
-      margin-bottom:12px;
-      border:1px solid #cbd5e1;
-      border-radius:10px;
-      box-sizing:border-box;
-      "
-    >
-
-    <input
-      type="password"
-      id="password"
-      placeholder="Password"
-      style="
-      width:100%;
-      padding:12px;
-      margin-bottom:18px;
-      border:1px solid #cbd5e1;
-      border-radius:10px;
-      box-sizing:border-box;
-      "
-    >
-
-    <button onclick="loginAMS()" style="
-    width:100%;
-    padding:12px;
-    border:none;
-    border-radius:10px;
-    background:#2563eb;
-    color:white;
-    font-weight:600;
-    cursor:pointer;
-    ">
-      Login
-    </button>
-
-    <p id="loginError" style="
-    color:red;
-    margin-top:15px;
-    font-size:13px;
-    display:none;
-    ">
-      Username atau password salah
-    </p>
-
-  </div>
-</div>
-<div class="container">
-
-  <!-- HEADER -->
-  <div class="header">
-    <div class="logo-group">
-      <img src="Logo-ppa.png">
-      <img src="Logo-gacoan.png">
-      <img src="Logo-harmoni.png">
+    <!-- Login Overlay -->
+    <div id="loginOverlay" class="fixed inset-0 bg-slate-900 z-[100] flex items-center justify-center">
+        <div class="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-md mx-4">
+            <div class="text-center mb-8">
+                <div class="inline-block bg-blue-900 text-white p-3 rounded-xl font-bold text-3xl mb-4">IA</div>
+                <h2 class="text-2xl font-bold text-slate-800">Login AMS UNIVERSE</h2>
+                <p class="text-slate-500 text-sm mt-1">Sistem Navigasi Internal Audit</p>
+            </div>
+            
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Username</label>
+                    <input type="text" id="usernameInputLogin" placeholder="Contoh: ADMIN atau AUDITOR" 
+                        class="w-full bg-slate-50 border border-slate-300 rounded-lg py-2.5 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all uppercase">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Password</label>
+                    <input type="password" id="passwordInputLogin" placeholder="••••••••" 
+                        class="w-full bg-slate-50 border border-slate-300 rounded-lg py-2.5 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all">
+                </div>
+                <div id="loginError" class="hidden bg-red-50 text-red-600 text-sm p-3 rounded-lg border border-red-200 text-center font-medium">
+                    Username atau password salah!
+                </div>
+                <button id="loginBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg transition-colors mt-2 shadow-md">
+                    Masuk Sistem
+                </button>
+                <div class="text-center mt-4 text-xs text-slate-400">
+                    <p>Akses Terbatas: Hanya untuk karyawan berwenang</p>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="header-text">
-      <h1>Audit Management System (AMS) HARMONI</h1>
-      <p>
-        Sistem manajemen audit terintegrasi untuk pencatatan hasil audit,
-        pengelolaan rekomendasi, dan monitoring implementasi.
-      </p>
+    <!-- Navbar / Header -->
+    <header id="mainHeader" class="bg-blue-900 text-white shadow-lg sticky top-0 z-50 hidden">
+        <div class="container mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="bg-white text-blue-900 p-2 rounded-lg font-bold text-xl">IA</div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-tight">AMS UNIVERSE</h1>
+                    <p class="text-blue-200 text-xs uppercase tracking-wider">Internal Audit Control Center</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-4 w-full md:w-auto">
+                <!-- Search Bar -->
+                <div class="relative w-full md:w-80">
+                    <input type="text" id="searchInput" placeholder="Cari aplikasi, dashboard..." 
+                        class="w-full bg-blue-800 text-white placeholder-blue-300 border border-blue-700 rounded-full py-2 px-4 pl-10 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:bg-white focus:text-slate-800 transition-all">
+                    <span class="absolute left-3 top-2.5 text-blue-300" id="searchIcon">🔍</span>
+                </div>
+                
+                <!-- Profil & Logout -->
+                <div class="flex items-center gap-3 border-l border-blue-700 pl-4">
+                    <div class="hidden md:block text-right">
+                        <p id="displayUsername" class="text-sm font-bold leading-tight">User</p>
+                        <p id="displayRole" class="text-xs text-blue-300 capitalize leading-tight">Role</p>
+                    </div>
+                    <button id="logoutBtn" class="bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors shadow-sm" title="Keluar">
+                        Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="mainContent" class="container mx-auto px-6 py-8 flex-grow hidden">
+        
+        <!-- Welcome Section -->
+        <div class="mb-8 flex justify-between items-end flex-wrap gap-4">
+            <div>
+                <h2 class="text-2xl font-bold text-slate-800 mb-1">Selamat Datang di Pusat Navigasi</h2>
+                <p class="text-slate-500">Akses seluruh portal, dashboard performa, dan control center dari satu tempat.</p>
+            </div>
+            <div class="text-sm text-slate-500 bg-white px-4 py-2 rounded-lg shadow-sm border border-slate-200">
+                Terakhir diperbarui: <span id="lastUpdated" class="font-semibold text-slate-700">8 Juni 2026</span>
+            </div>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="flex flex-wrap gap-2 mb-8" id="filterContainer">
+            <button class="filter-btn active bg-blue-600 text-white px-5 py-2 rounded-full text-sm font-medium transition-colors shadow-sm" data-filter="all">Semua Aplikasi</button>
+            <button class="filter-btn bg-white text-slate-600 hover:bg-blue-50 hover:text-blue-600 border border-slate-200 px-5 py-2 rounded-full text-sm font-medium transition-colors shadow-sm" data-filter="portal">Portal & Form</button>
+            <button class="filter-btn bg-white text-slate-600 hover:bg-blue-50 hover:text-blue-600 border border-slate-200 px-5 py-2 rounded-full text-sm font-medium transition-colors shadow-sm" data-filter="performance">Dashboard & Performance</button>
+            <button class="filter-btn bg-white text-slate-600 hover:bg-blue-50 hover:text-blue-600 border border-slate-200 px-5 py-2 rounded-full text-sm font-medium transition-colors shadow-sm" data-filter="control">Control Center (Admin)</button>
+        </div>
+
+        <!-- Apps Container (Will be populated by JS grouped by type) -->
+        <div id="appsGrid" class="w-full space-y-12">
+            <!-- Cards & Sections akan di-generate oleh JavaScript disini -->
+        </div>
+
+        <!-- Empty State (Hidden by default) -->
+        <div id="emptyState" class="hidden text-center py-12">
+            <div class="text-4xl mb-4">🔍</div>
+            <h3 class="text-lg font-bold text-slate-700 mb-2">Aplikasi Tidak Ditemukan</h3>
+            <p class="text-slate-500">Coba gunakan kata kunci lain atau periksa filter kategori Anda.</p>
+        </div>
+
+        <!-- Panduan Penggunaan Sistem -->
+        <div class="mt-16 pt-8 border-t-2 border-slate-200">
+            <h3 class="text-xl font-bold text-slate-800 mb-6 text-center md:text-left flex items-center justify-center md:justify-start gap-2">
+                <span class="text-blue-600">📚</span> Panduan Penggunaan Sistem
+            </h3>
+            
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                <a href="https://pestapora.sharepoint.com/:f:/s/InternalAudit/IgDLwJW9RrwNQpAG2DExFD9_AcmdkUAAAzbPOX_LLIjdZK4?e=uMTd8R" target="_blank" class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:shadow-md hover:border-blue-400 hover:text-blue-600 transition-all text-center font-bold text-slate-700 flex flex-col items-center gap-3">
+                    <span class="text-3xl">📖</span> Manual Book
+                </a>
+                
+                <a href="https://pestapora.sharepoint.com/:f:/s/InternalAudit/IgBttlko38yvSopQlBUAgC43AVEsU0SBkLoqMGJErikwLWs?e=0xu6Ng" target="_blank" class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:shadow-md hover:border-blue-400 hover:text-blue-600 transition-all text-center font-bold text-slate-700 flex flex-col items-center gap-3">
+                    <span class="text-3xl">▶️</span> Video Tutorial
+                </a>
+                
+                <a href="https://pestapora.sharepoint.com/:f:/s/InternalAudit/IgACDhGZjTWwRZMLSRav1U8oAQK_AaW2tHRpYGKFqHPNeQY?e=y4r3Pj" target="_blank" class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:shadow-md hover:border-blue-400 hover:text-blue-600 transition-all text-center font-bold text-slate-700 flex flex-col items-center gap-3">
+                    <span class="text-3xl">🎓</span> Records Training
+                </a>
+                
+                <button onclick="openSupport()" class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:shadow-md hover:border-green-400 hover:text-green-600 transition-all text-center font-bold text-slate-700 flex flex-col items-center gap-3 w-full">
+                    <span class="text-3xl">🎧</span> Support
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer id="mainFooter" class="bg-slate-900 text-slate-400 py-6 text-center text-sm border-t-4 border-blue-600 hidden">
+        <p class="leading-relaxed">
+            Dibuat dan dikembangkan oleh Tim AI System & Data Analytic <br class="md:hidden">
+            <span class="hidden md:inline">|</span> Sub Direktorat Internal Audit <br class="md:hidden">
+            <span class="hidden md:inline">|</span> PT Pesta Pora Abadi <span class="hidden md:inline">|</span> &copy; 2026
+        </p>
+    </footer>
+
+    <!-- MODAL SUPPORT -->
+    <div id="supportModal" class="fixed inset-0 bg-slate-900 bg-opacity-60 z-[200] items-center justify-center hidden backdrop-blur-sm transition-opacity">
+        <div class="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-md mx-4 relative">
+            <div class="text-center mb-6">
+                <div class="text-4xl mb-2">🤝</div>
+                <h3 class="text-2xl font-bold text-slate-800">Butuh Bantuan?</h3>
+                <p class="text-slate-500 text-sm mt-1">Pilih jalur komunikasi di bawah ini.</p>
+            </div>
+            
+            <div class="flex flex-col gap-3">
+                <a href="https://wa.me/6282258866604?text=Halo%20Tim%20Audit%2C%20saya%20butuh%20bantuan%20AMS" target="_blank" class="flex items-center gap-4 bg-green-50 text-green-700 p-4 rounded-xl hover:bg-green-100 transition-colors border border-green-200 font-semibold shadow-sm">
+                    <span class="text-2xl">📞</span> 
+                    <span class="text-left leading-tight">WhatsApp<br><span class="text-sm font-normal">+62 822-5886-6604</span></span>
+                </a>
+                
+                <a href="mailto:Hayun.pratama@miegacoan.co.id" class="flex items-center gap-4 bg-blue-50 text-blue-700 p-4 rounded-xl hover:bg-blue-100 transition-colors border border-blue-200 font-semibold shadow-sm overflow-hidden">
+                    <span class="text-2xl">📧</span> 
+                    <span class="text-left leading-tight">Email<br><span class="text-xs sm:text-sm font-normal">Hayun.pratama@miegacoan.co.id</span></span>
+                </a>
+                
+                <a href="https://forms.gle/fcbjStkKUocebgH49" target="_blank" class="flex items-center justify-center gap-2 bg-emerald-600 text-white p-4 rounded-xl hover:bg-emerald-700 transition-colors font-bold mt-2 shadow-md">
+                    📝 Laporkan Permasalahan (Form)
+                </a>
+            </div>
+            
+            <button onclick="closeSupport()" class="mt-6 w-full bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold py-3 rounded-xl transition-colors">
+                Tutup
+            </button>
+        </div>
     </div>
-  </div>
 
-  <!-- MAIN -->
-  <div class="section-title">Pilih modul audit untuk memulai</div>
+    <!-- ========================================== -->
+    <!-- BAGIAN KONFIGURASI DAN JAVASCRIPT -->
+    <!-- ========================================== -->
+    <script>
+        // 1. DATA KONFIGURASI APLIKASI
+        const appConfig = [
+            // Penugasan: Audit Operational
+            {
+                id: 'portal-ams',
+                title: 'Portal AMS Harmoni',
+                description: 'Portal untuk akses Appsheet Auditor dan HTML Auditee (Konfirmasi temuan dan CAPA).',
+                category: 'portal',
+                status: 'active',
+                url: 'https://sites.google.com/view/amsharmoni/home',
+                icon: '📱',
+                type: 'operational'
+            },
+            {
+                id: 'dash-performance',
+                title: 'Dashboard Performance IA',
+                description: 'Dashboard untuk memantau aktivitas auditor, berisi summary, report email automatic dll.',
+                category: 'performance',
+                status: 'active',
+                url: 'https://sites.google.com/view/performanceia/dashboard-performance',
+                icon: '📊',
+                type: 'operational'
+            },
+            {
+                id: 'control-center',
+                title: 'AMS Control Center',
+                description: 'Portal AMS Control Center untuk manajemen, administrasi, dan pemeliharaan sistem.',
+                category: 'control',
+                status: 'active',
+                url: 'https://sites.google.com/view/cc4ms/home',
+                icon: '⚙️',
+                type: 'operational'
+            },
+            // Penugasan: Audit Investigasi & Proses (Tahap Pengembangan)
+            {
+                id: 'portal-investigasi',
+                title: 'Portal Audit Investigasi',
+                description: 'Portal untuk pengelolaan audit investigasi dan proses investigasi lanjutan (Dalam Pengembangan).',
+                category: 'portal',
+                status: 'development',
+                url: '#',
+                icon: '🕵️‍♂️',
+                type: 'investigasi'
+            },
+            {
+                id: 'dash-investigasi',
+                title: 'Dashboard Investigasi IA',
+                description: 'Pemantauan aktivitas investigasi, progres kasus, dan reporting (Dalam Pengembangan).',
+                category: 'performance',
+                status: 'development',
+                url: '#',
+                icon: '📈',
+                type: 'investigasi'
+            }
+        ];
 
-  <div class="grid-main">
-    <a href="https://www.appsheet.com/start/9706c122-adff-4a26-a979-34903b8dfc69" target="_blank" class="card card-primary">
-      <div class="card-title">AMS OPR</div>
-      <div class="card-desc">Audit Operasional Restoran</div>
-      <div class="card-link">Akses Sistem →</div>
-    </a>
+        // 2. KONFIGURASI UI MAPPER
+        const statusConfig = {
+            'active': { text: 'Active', bg: 'bg-emerald-100', textCol: 'text-emerald-700', dot: 'bg-emerald-500' },
+            'maintenance': { text: 'Maintenance', bg: 'bg-amber-100', textCol: 'text-amber-700', dot: 'bg-amber-500' },
+            'deprecated': { text: 'Deprecated', bg: 'bg-red-100', textCol: 'text-red-700', dot: 'bg-red-500' },
+            'development': { text: 'In Development', bg: 'bg-purple-100', textCol: 'text-purple-700', dot: 'bg-purple-500' }
+        };
 
-    <a href="https://www.appsheet.com/start/87e5e9f0-32ac-4504-b9ef-60c9af29e874" target="_blank" class="card card-secondary">
-      <div class="card-title">AMS Non OPR</div>
-      <div class="card-desc">Audit Non Operasional & Investigasi</div>
-      <div class="card-link">Akses Sistem →</div>
-    </a>
-  </div>
-  <!-- MONITORING PENUGASAN -->
-  <div class="section-title">Monitoring penugasan audit</div>
+        const categoryConfig = {
+            'portal': 'Portal & Form',
+            'performance': 'Dashboard & Performance',
+            'control': 'Control Center'
+        };
 
-  <div class="grid-main">
+        // 3. LOGIKa JAVASCRIPT UTAMA
+        const appsGrid = document.getElementById('appsGrid');
+        const emptyState = document.getElementById('emptyState');
+        const searchInput = document.getElementById('searchInput');
+        const filterBtns = document.querySelectorAll('.filter-btn');
 
-    <a href="https://bit.ly/3R1Hxq3"
-       target="_blank"
-       class="card card-secondary">
+        // Setup Elemen Login & Auth State
+        let currentUserRole = null;
+        let currentUsername = null;
+        const loginOverlay = document.getElementById('loginOverlay');
+        const mainHeader = document.getElementById('mainHeader');
+        const mainContent = document.getElementById('mainContent');
+        const mainFooter = document.getElementById('mainFooter');
+        const loginBtn = document.getElementById('loginBtn');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const loginError = document.getElementById('loginError');
 
-      <div class="card-title">
-        Monitoring Audit Operasional
-      </div>
+        // Fungsi Modal Support
+        function openSupport() {
+            const modal = document.getElementById('supportModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
 
-      <div class="card-desc">
-        Monitoring penugasan audit operasional restoran dan SLA audit.
-      </div>
+        function closeSupport() {
+            const modal = document.getElementById('supportModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
 
-      <div class="card-link">
-        Buka Monitoring →
-      </div>
+        function handleLogin() {
+            const user = document.getElementById('usernameInputLogin').value.trim().toUpperCase();
+            const pass = document.getElementById('passwordInputLogin').value;
 
-    </a>
+            if (user === 'ADMIN' && pass === 'ADMIN123') {
+                loginSuccess('ADMIN', 'admin');
+            } else if (user === 'AUDITOR' && pass === 'AUDITOR123') {
+                loginSuccess('AUDITOR', 'auditor');
+            } else {
+                loginError.classList.remove('hidden');
+                setTimeout(() => loginError.classList.add('hidden'), 3000);
+            }
+        }
 
-    <a href="#"
-       class="card card-secondary">
+        function loginSuccess(username, role) {
+            currentUserRole = role;
+            currentUsername = username;
+            
+            // Update UI Profil di Header
+            document.getElementById('displayUsername').innerText = username;
+            document.getElementById('displayRole').innerText = role === 'admin' ? 'Administrator' : 'Auditor Staff';
 
-      <div class="card-title">
-        Monitoring Audit Investigasi dan Proses
-      </div>
+            // Sembunyikan Overlay Login, Tampilkan Main Layout
+            loginOverlay.classList.add('hidden');
+            mainHeader.classList.remove('hidden');
+            mainContent.classList.remove('hidden');
+            mainFooter.classList.remove('hidden');
+            
+            // Reset input login
+            document.getElementById('usernameInputLogin').value = '';
+            document.getElementById('passwordInputLogin').value = '';
+            
+            // Kelola visibilitas filter Control Center
+            const controlFilterBtn = document.querySelector('[data-filter="control"]');
+            if (role === 'auditor') {
+                controlFilterBtn.style.display = 'none';
+            } else {
+                controlFilterBtn.style.display = 'inline-block';
+            }
 
-      <div class="card-desc">
-        Monitoring audit investigasi, audit proses, dan tindak lanjut audit.
-      </div>
+            // Kembalikan filter ke 'Semua Aplikasi' & Render Ulang sesuai hak akses
+            document.querySelector('[data-filter="all"]').click();
+        }
 
-      <div class="card-link">
-        Segera Tersedia →
-      </div>
+        function handleLogout() {
+            currentUserRole = null;
+            currentUsername = null;
+            
+            // Kembalikan overlay login dan sembunyikan layout utama
+            loginOverlay.classList.remove('hidden');
+            mainHeader.classList.add('hidden');
+            mainContent.classList.add('hidden');
+            mainFooter.classList.add('hidden');
+            
+            // Reset search & empty state
+            searchInput.value = '';
+            emptyState.classList.add('hidden');
+        }
 
-    </a>
+        loginBtn.addEventListener('click', handleLogin);
+        logoutBtn.addEventListener('click', handleLogout);
+        document.getElementById('passwordInputLogin').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleLogin();
+        });
 
-  </div>
-  
-  <!-- SUPPORT -->
-  <div class="section-title">Panduan penggunaan sistem tersedia di bawah</div>
+        // Fungsi Render Card (Dikelompokkan Berdasarkan Jenis Penugasan)
+        function renderCards(data) {
+            appsGrid.innerHTML = '';
+            
+            if (data.length === 0) {
+                emptyState.classList.remove('hidden');
+                return;
+            }
+            
+            emptyState.classList.add('hidden');
 
-  <div class="grid-menu">
-    <a href="https://pestapora.sharepoint.com/:f:/s/InternalAudit/IgDLwJW9RrwNQpAG2DExFD9_AcmdkUAAAzbPOX_LLIjdZK4?e=uMTd8R" target="_blank" class="menu">
-      Manual Book
-    </a>
+            // Kelompokkan data
+            const groups = {
+                'operational': { title: '<span class="text-blue-600">🎯</span> Penugasan: Audit Operational', apps: [] },
+                'investigasi': { title: '<span class="text-purple-600">🕵️‍♀️</span> Penugasan: Audit Investigasi & Proses', apps: [] }
+            };
 
-    <a href="https://pestapora.sharepoint.com/:f:/s/InternalAudit/IgBttlko38yvSopQlBUAgC43AVEsU0SBkLoqMGJErikwLWs?e=0xu6Ng" target="_blank" class="menu">
-      Video Tutorial
-    </a>
+            data.forEach(app => {
+                if (groups[app.type]) {
+                    groups[app.type].apps.push(app);
+                }
+            });
 
-    <a href="https://pestapora.sharepoint.com/:f:/s/InternalAudit/IgACDhGZjTWwRZMLSRav1U8oAQK_AaW2tHRpYGKFqHPNeQY?e=y4r3Pj" target="_blank" class="menu">
-      Records Training
-    </a>
+            // Buat HTML untuk setiap kelompok yang memiliki data
+            for (const key in groups) {
+                const group = groups[key];
+                
+                if (group.apps.length > 0) {
+                    const sectionDiv = document.createElement('div');
+                    
+                    // Judul Section
+                    const sectionTitle = document.createElement('h3');
+                    sectionTitle.className = 'text-xl font-bold text-slate-800 mb-5 border-b-2 border-slate-200 pb-3 flex items-center gap-2';
+                    sectionTitle.innerHTML = group.title;
+                    sectionDiv.appendChild(sectionTitle);
 
-    <div class="menu" onclick="openSupport()">Support</div>
-  </div>
+                    // Grid Card
+                    const gridDiv = document.createElement('div');
+                    gridDiv.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6';
 
-  <!-- FOOTER -->
-  <div class="footer">
-    Dibuat dan dikembangkan oleh Tim AI System & Data Analytic |
-    Sub Direktorat Internal Audit |
-    PT Pesta Pora Abadi | 2026
-  </div>
+                    group.apps.forEach(app => {
+                        const stat = statusConfig[app.status];
+                        const catName = categoryConfig[app.category];
+                        
+                        const card = document.createElement('div');
+                        card.className = 'bg-white rounded-xl p-6 border border-slate-200 transition-all duration-300 card-hover flex flex-col h-full';
+                        
+                        // Konfigurasi Tombol
+                        let btnClass = 'bg-slate-200 text-slate-500 cursor-not-allowed';
+                        let btnHref = '';
+                        let btnText = 'Akses Ditutup';
 
-</div>
+                        if (app.status === 'active') {
+                            btnClass = 'bg-blue-600 hover:bg-blue-700 text-white shadow-sm';
+                            btnHref = `href="${app.url}" target="_blank"`;
+                            btnText = 'Buka Aplikasi &rarr;';
+                        } else if (app.status === 'development') {
+                            btnClass = 'bg-purple-100 text-purple-700 cursor-not-allowed font-medium';
+                            btnText = 'Sedang Dalam Pengembangan';
+                        }
 
-<!-- MODAL -->
-<div id="supportModal" class="modal">
-  <div class="modal-content">
-    <h3>Butuh Bantuan?</h3>
+                        card.innerHTML = `
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="text-3xl bg-slate-50 p-3 rounded-lg border border-slate-100 shadow-sm">${app.icon}</div>
+                                <div class="flex items-center px-2.5 py-1 rounded-full text-xs font-semibold ${stat.bg} ${stat.textCol}">
+                                    <span class="w-1.5 h-1.5 rounded-full mr-1.5 ${stat.dot}"></span>
+                                    ${stat.text}
+                                </div>
+                            </div>
+                            <div class="mb-2">
+                                <span class="text-xs font-bold uppercase tracking-wider text-blue-600 mb-1 block">${catName}</span>
+                                <h3 class="text-lg font-bold text-slate-800 leading-tight">${app.title}</h3>
+                            </div>
+                            <p class="text-sm text-slate-600 mb-6 flex-grow leading-relaxed">${app.description}</p>
+                            <a ${btnHref} class="mt-auto block text-center w-full py-2.5 rounded-lg text-sm font-bold transition-colors ${btnClass}">
+                                ${btnText}
+                            </a>
+                        `;
+                        gridDiv.appendChild(card);
+                    });
 
-    <a href="https://wa.me/6282258866604?text=Halo%20Tim%20Audit%2C%20saya%20butuh%20bantuan%20AMS" target="_blank">
-      📞 WhatsApp: +62 822-5886-6604
-    </a>
+                    sectionDiv.appendChild(gridDiv);
+                    appsGrid.appendChild(sectionDiv);
+                }
+            }
+        }
 
-    <a href="mailto:Hayun.pratama@miegacoan.co.id">
-      📧 Email: Hayun.pratama@miegacoan.co.id
-    </a>
+        // Fungsi Filter & Search
+        function filterData() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const activeFilterBtn = document.querySelector('.filter-btn.active');
+            const categoryFilter = activeFilterBtn.getAttribute('data-filter');
 
-    <a href="https://forms.gle/fcbjStkKUocebgH49" target="_blank" style="margin-top:12px; font-weight:600; color:#16a34a;">
-      📝 Laporkan Permasalahan (Form)
-    </a>
+            const filteredData = appConfig.filter(app => {
+                // 1. Otentikasi Berbasis Role (Auditor tidak melihat Control Center)
+                if (currentUserRole === 'auditor' && app.id === 'control-center') {
+                    return false; 
+                }
 
-    <br><br>
+                // 2. Filter Search & Kategori
+                const matchesSearch = app.title.toLowerCase().includes(searchTerm) || app.description.toLowerCase().includes(searchTerm);
+                const matchesCategory = categoryFilter === 'all' || app.category === categoryFilter;
+                return matchesSearch && matchesCategory;
+            });
 
-    <button onclick="closeSupport()">Tutup</button>
-  </div>
-</div>
+            renderCards(filteredData);
+        }
 
-<script>
-function openSupport() {
-  document.getElementById("supportModal").style.display = "flex";
-}
-function closeSupport() {
-  document.getElementById("supportModal").style.display = "none";
-}
-</script>
+        // Event Listeners
+        searchInput.addEventListener('input', filterData);
 
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                // Reset active class
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-blue-600', 'text-white', 'active');
+                    b.classList.add('bg-white', 'text-slate-600');
+                });
+                
+                // Set active class to clicked button
+                e.target.classList.add('bg-blue-600', 'text-white', 'active');
+                e.target.classList.remove('bg-white', 'text-slate-600');
+                
+                filterData();
+            });
+        });
+
+        // Search bar UI effect
+        searchInput.addEventListener('focus', () => {
+            document.getElementById('searchIcon').classList.add('text-blue-500');
+            document.getElementById('searchIcon').classList.remove('text-blue-300');
+        });
+        searchInput.addEventListener('blur', () => {
+            if(!searchInput.value) {
+                document.getElementById('searchIcon').classList.remove('text-blue-500');
+                document.getElementById('searchIcon').classList.add('text-blue-300');
+            }
+        });
+
+    </script>
 </body>
 </html>
